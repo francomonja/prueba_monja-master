@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:prueba_monja/core/models/api_shops_response.dart';
 import 'package:prueba_monja/core/viewmodel/home_view_viewmodel.dart';
 import 'package:prueba_monja/ui/constants/app_colors.dart';
+import 'package:prueba_monja/ui/widgets/scaffold_with_loading.dart';
 import 'package:stacked/stacked.dart';
 
 import '../widgets/search_widget.dart';
@@ -12,26 +13,14 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewViewModel>.reactive(
         viewModelBuilder: () => HomeViewViewModel(),
+        onModelReady: (vm) async {
+          await vm.init();
+        },
         builder: (context, vm, child) {
-          return Scaffold(
-              appBar: AppBar(
-                title: Text('appbar'),
-              ),
-              endDrawer: Drawer(
-                backgroundColor: Colors.blue,
-                child: Column(
-                  children: [
-                    SizedBox(
-                      height: 50,
-                    ),
-                    ListTile(
-                      title: Text("Cerrar sesion"),
-                      onTap: () => vm.logOut(),
-                    )
-                  ],
-                ),
-              ),
-              backgroundColor: AppColors.scaffoldBackgroundColor,
+          return ScaffoldWithLoading(
+              showAppBar: true,
+              showEndDrawer: true,
+              isBusy: vm.isBusy,
               body: Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
                 child: Column(

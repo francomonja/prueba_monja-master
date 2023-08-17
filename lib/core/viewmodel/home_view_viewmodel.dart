@@ -6,11 +6,12 @@ import 'package:prueba_monja/app.router.dart';
 import 'package:prueba_monja/core/constants/storage_keys.dart';
 import 'package:prueba_monja/core/enums/dialog_type.dart';
 import 'package:prueba_monja/core/models/api_shops_response.dart';
+import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../app.locator.dart';
 
-class HomeViewViewModel extends ChangeNotifier {
+class HomeViewViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
   final TextEditingController search = TextEditingController();
   final DialogService _dialogService = locator<DialogService>();
@@ -67,7 +68,9 @@ class HomeViewViewModel extends ChangeNotifier {
   }
 
   void onDismiss(index) {
+    setBusy(true);
     shopsResponse.removeAt(index);
+    setBusy(false);
     notifyListeners();
   }
 
@@ -76,5 +79,12 @@ class HomeViewViewModel extends ChangeNotifier {
     await FirebaseAuth.instance.signOut();
     await _secureStorage.delete(key: userToken);
     _navigationService.navigateToLoginView();
+  }
+
+  Future<void> init() async {
+    setBusy(true);
+    Future.delayed(Duration(seconds: 2), () {
+      setBusy(false);
+    });
   }
 }
