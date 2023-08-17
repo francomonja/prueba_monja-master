@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "759431317728",
+    "firebase_url": "https://flutter-varios-e9ebe-default-rtdb.firebaseio.com",
+    "project_id": "flutter-varios-e9ebe",
+    "storage_bucket": "flutter-varios-e9ebe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:759431317728:android:683853f2da8656824b2885",
+        "android_client_info": {
+          "package_name": "com.prueba.monja"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "759431317728-ooo89u3nvj6u3tsnr764v1ifiupv4qn9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA78BIZqMFwwVyIdhw6y5RtLBZhrHWsm6I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "759431317728-ooo89u3nvj6u3tsnr764v1ifiupv4qn9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

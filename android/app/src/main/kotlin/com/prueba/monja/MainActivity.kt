@@ -1,0 +1,6 @@
+package com.prueba.monja
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}
