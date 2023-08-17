@@ -15,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "759431317728-ooo89u3nvj6u3tsnr764v1ifiupv4qn9.apps.googleusercontent.com",
+          "client_id": "759431317728-t1d16o3gpnq3po7v3gdc2iv2409g1qj2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.prueba.monja",
+            "certificate_hash": "cebaa0cc6f61399221d87d7d664f2a092e7256d3"
+          }
+        },
+        {
+          "client_id": "759431317728-bteqj69ibrru03e5asa29bacb31it4h1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -28,8 +36,15 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "759431317728-ooo89u3nvj6u3tsnr764v1ifiupv4qn9.apps.googleusercontent.com",
+              "client_id": "759431317728-bteqj69ibrru03e5asa29bacb31it4h1.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "759431317728-qdqvme0a68jtodv27v586dlv3i0pe4u9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.pruebaMonja"
+              }
             }
           ]
         }

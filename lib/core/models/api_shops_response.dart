@@ -41,3 +41,23 @@ class ShopsApiResponse {
     required this.data,
   });
 }
+
+class ShopNotificationData {
+  int? id;
+  String? name;
+  String? description;
+  String? category;
+
+  ShopNotificationData({
+    this.id,
+    this.name,
+    this.description,
+    this.category,
+  });
+
+  ShopNotificationData.fromJson(Map<String, dynamic> json) {
+    name = json['name']?.toString();
+    description = json['description']?.toString();
+    category = json['category']?.toString();
+  }
+}

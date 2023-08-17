@@ -14,6 +14,23 @@ class HomeView extends StatelessWidget {
         viewModelBuilder: () => HomeViewViewModel(),
         builder: (context, vm, child) {
           return Scaffold(
+              appBar: AppBar(
+                title: Text('appbar'),
+              ),
+              endDrawer: Drawer(
+                backgroundColor: Colors.blue,
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 50,
+                    ),
+                    ListTile(
+                      title: Text("Cerrar sesion"),
+                      onTap: () => vm.logOut(),
+                    )
+                  ],
+                ),
+              ),
               backgroundColor: AppColors.scaffoldBackgroundColor,
               body: Padding(
                 padding: const EdgeInsets.only(top: 40, left: 20, right: 20),

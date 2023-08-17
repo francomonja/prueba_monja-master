@@ -5,16 +5,19 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i5;
+import 'package:flutter/material.dart' as _i6;
 import 'package:flutter/material.dart';
-import 'package:prueba_monja/core/models/api_shops_response.dart' as _i6;
-import 'package:prueba_monja/ui/views/detail_view.dart' as _i3;
-import 'package:prueba_monja/ui/views/home_view.dart' as _i2;
-import 'package:prueba_monja/ui/views/promotion_view.dart' as _i4;
+import 'package:prueba_monja/core/models/api_shops_response.dart' as _i7;
+import 'package:prueba_monja/ui/views/detail_view.dart' as _i4;
+import 'package:prueba_monja/ui/views/home_view.dart' as _i3;
+import 'package:prueba_monja/ui/views/login_view.dart' as _i2;
+import 'package:prueba_monja/ui/views/promotion_view.dart' as _i5;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i7;
+import 'package:stacked_services/stacked_services.dart' as _i8;
 
 class Routes {
+  static const loginView = '/login-view';
+
   static const homeView = '/home-view';
 
   static const detailView = '/detail-view';
@@ -22,6 +25,7 @@ class Routes {
   static const promotionView = '/promotion-view';
 
   static const all = <String>{
+    loginView,
     homeView,
     detailView,
     promotionView,
@@ -31,39 +35,49 @@ class Routes {
 class StackedRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
     _i1.RouteDef(
+      Routes.loginView,
+      page: _i2.LoginView,
+    ),
+    _i1.RouteDef(
       Routes.homeView,
-      page: _i2.HomeView,
+      page: _i3.HomeView,
     ),
     _i1.RouteDef(
       Routes.detailView,
-      page: _i3.DetailView,
+      page: _i4.DetailView,
     ),
     _i1.RouteDef(
       Routes.promotionView,
-      page: _i4.PromotionView,
+      page: _i5.PromotionView,
     ),
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i2.HomeView: (data) {
-      return _i5.MaterialPageRoute<dynamic>(
-        builder: (context) => _i2.HomeView(),
+    _i2.LoginView: (data) {
+      return _i6.MaterialPageRoute<dynamic>(
+        builder: (context) => const _i2.LoginView(),
         settings: data,
       );
     },
-    _i3.DetailView: (data) {
+    _i3.HomeView: (data) {
+      return _i6.MaterialPageRoute<dynamic>(
+        builder: (context) => _i3.HomeView(),
+        settings: data,
+      );
+    },
+    _i4.DetailView: (data) {
       final args = data.getArgs<DetailViewArguments>(nullOk: false);
-      return _i5.MaterialPageRoute<dynamic>(
+      return _i6.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i3.DetailView(key: args.key, shopDetail: args.shopDetail),
+            _i4.DetailView(key: args.key, shopDetail: args.shopDetail),
         settings: data,
       );
     },
-    _i4.PromotionView: (data) {
+    _i5.PromotionView: (data) {
       final args = data.getArgs<PromotionViewArguments>(nullOk: false);
-      return _i5.MaterialPageRoute<dynamic>(
+      return _i6.MaterialPageRoute<dynamic>(
         builder: (context) =>
-            _i4.PromotionView(key: args.key, promotion: args.promotion),
+            _i5.PromotionView(key: args.key, promotion: args.promotion),
         settings: data,
       );
     },
@@ -81,9 +95,9 @@ class DetailViewArguments {
     required this.shopDetail,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i6.ShopData shopDetail;
+  final _i7.ShopData shopDetail;
 
   @override
   String toString() {
@@ -108,9 +122,9 @@ class PromotionViewArguments {
     required this.promotion,
   });
 
-  final _i5.Key? key;
+  final _i6.Key? key;
 
-  final _i6.PromotionData promotion;
+  final _i7.PromotionData promotion;
 
   @override
   String toString() {
@@ -129,7 +143,21 @@ class PromotionViewArguments {
   }
 }
 
-extension NavigatorStateExtension on _i7.NavigationService {
+extension NavigatorStateExtension on _i8.NavigationService {
+  Future<dynamic> navigateToLoginView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return navigateTo<dynamic>(Routes.loginView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,
@@ -145,8 +173,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> navigateToDetailView({
-    _i5.Key? key,
-    required _i6.ShopData shopDetail,
+    _i6.Key? key,
+    required _i7.ShopData shopDetail,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -162,8 +190,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> navigateToPromotionView({
-    _i5.Key? key,
-    required _i6.PromotionData promotion,
+    _i6.Key? key,
+    required _i7.PromotionData promotion,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -172,6 +200,20 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }) async {
     return navigateTo<dynamic>(Routes.promotionView,
         arguments: PromotionViewArguments(key: key, promotion: promotion),
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> replaceWithLoginView([
+    int? routerId,
+    bool preventDuplicates = true,
+    Map<String, String>? parameters,
+    Widget Function(BuildContext, Animation<double>, Animation<double>, Widget)?
+        transition,
+  ]) async {
+    return replaceWith<dynamic>(Routes.loginView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,
@@ -193,8 +235,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> replaceWithDetailView({
-    _i5.Key? key,
-    required _i6.ShopData shopDetail,
+    _i6.Key? key,
+    required _i7.ShopData shopDetail,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
@@ -210,8 +252,8 @@ extension NavigatorStateExtension on _i7.NavigationService {
   }
 
   Future<dynamic> replaceWithPromotionView({
-    _i5.Key? key,
-    required _i6.PromotionData promotion,
+    _i6.Key? key,
+    required _i7.PromotionData promotion,
     int? routerId,
     bool preventDuplicates = true,
     Map<String, String>? parameters,
