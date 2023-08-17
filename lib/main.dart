@@ -9,7 +9,6 @@ import 'package:prueba_monja/core/services/flutter_firebase_messaging_background
 import 'package:prueba_monja/firebase_options.dart';
 import 'package:prueba_monja/ui/setup_dialog_ui.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app.locator.dart';
 import 'app.router.dart';
@@ -29,9 +28,6 @@ void main() {
     await setupLocator();
     setupDialogUi();
     FlutterFirebaseMessagingBackgroundService _notificationService = locator<FlutterFirebaseMessagingBackgroundService>();
-    AuthService authService = locator<AuthService>();
-    String initialRoute = await authService.isAuthenticated() ? Routes.homeView : Routes.loginView;
-
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
@@ -41,6 +37,8 @@ void main() {
     _notificationService.init();
     await _notificationService.requestPermissions();
     await _notificationService.getDeviceToken();
+    AuthService authService = locator<AuthService>();
+    String initialRoute = await authService.isAuthenticated() ? Routes.homeView : Routes.loginView;
 
     runApp(MyApp(
       initialRoute: initialRoute,
