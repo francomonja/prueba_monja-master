@@ -9,13 +9,12 @@ import '../widgets/search_widget.dart';
 import '../widgets/shop_card_widget.dart';
 
 class HomeView extends StatelessWidget {
+  const HomeView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewViewModel>.reactive(
         viewModelBuilder: () => HomeViewViewModel(),
-        onModelReady: (vm) async {
-          await vm.init();
-        },
         builder: (context, vm, child) {
           return ScaffoldWithLoading(
               showAppBar: true,

@@ -68,9 +68,7 @@ class HomeViewViewModel extends BaseViewModel {
   }
 
   void onDismiss(index) {
-    setBusy(true);
     shopsResponse.removeAt(index);
-    setBusy(false);
     notifyListeners();
   }
 
@@ -79,12 +77,5 @@ class HomeViewViewModel extends BaseViewModel {
     await FirebaseAuth.instance.signOut();
     await _secureStorage.delete(key: userToken);
     _navigationService.navigateToLoginView();
-  }
-
-  Future<void> init() async {
-    setBusy(true);
-    Future.delayed(Duration(seconds: 2), () {
-      setBusy(false);
-    });
   }
 }

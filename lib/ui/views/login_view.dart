@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:prueba_monja/core/viewmodel/login_view_viewmodel.dart';
 import 'package:prueba_monja/ui/widgets/custom_input.dart';
+import 'package:prueba_monja/ui/widgets/scaffold_with_loading.dart';
 import 'package:stacked/stacked.dart';
 
 import '../widgets/custom_button.dart';
@@ -13,7 +14,10 @@ class LoginView extends StatelessWidget {
     return ViewModelBuilder<LoginViewViewModel>.reactive(
       viewModelBuilder: () => LoginViewViewModel(),
       builder: (context, vm, child) {
-        return Scaffold(
+        return ScaffoldWithLoading(
+          showAppBar: false,
+          showEndDrawer: false,
+          isBusy: vm.isBusy,
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: Column(

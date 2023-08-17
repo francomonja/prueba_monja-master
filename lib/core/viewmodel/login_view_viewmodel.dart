@@ -11,28 +11,36 @@ class LoginViewViewModel extends BaseViewModel {
   final NavigationService _navigationService = NavigationService();
   final AuthService _authService = locator<AuthService>();
   void registerController() {
+    setBusy(true);
     try {
       _authService.onRegister(userController.text, passwordController.text);
     } catch (e) {
       print(e);
     }
+    setBusy(false);
   }
 
   void loginController() async {
+    setBusy(true);
+
     try {
       await _authService.onLogIn(userController.text, passwordController.text);
       _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
     } catch (e) {
       print(e);
     }
+    setBusy(false);
   }
 
   void googleController() async {
+    setBusy(true);
+
     try {
       await _authService.googleLogIn();
       _navigationService.pushNamedAndRemoveUntil(Routes.homeView);
     } catch (error) {
       print(error);
     }
+    setBusy(false);
   }
 }
