@@ -44,6 +44,7 @@ dependencies:
   overlay_support: ^2.1.0
   firebase_auth: ^4.7.3
   google_sign_in: ^5.4.2
+  flutter_secure_storage: ^8.0.0
 
 dev_dependencies:
   stacked_generator: ^1.4.0

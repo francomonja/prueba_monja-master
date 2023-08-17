@@ -13,6 +13,7 @@ import 'package:stacked_themes/stacked_themes.dart';
 
 import 'app.locator.dart';
 import 'app.router.dart';
+import 'core/services/auth_service.dart';
 
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -28,7 +29,8 @@ void main() {
     await setupLocator();
     setupDialogUi();
     FlutterFirebaseMessagingBackgroundService _notificationService = locator<FlutterFirebaseMessagingBackgroundService>();
-    String initialRoute = Routes.loginView;
+    AuthService authService = locator<AuthService>();
+    String initialRoute = await authService.isAuthenticated() ? Routes.homeView : Routes.loginView;
 
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,

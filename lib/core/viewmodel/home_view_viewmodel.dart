@@ -1,7 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:prueba_monja/app.router.dart';
+import 'package:prueba_monja/core/constants/storage_keys.dart';
 import 'package:prueba_monja/core/enums/dialog_type.dart';
 import 'package:prueba_monja/core/models/api_shops_response.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -12,7 +14,7 @@ class HomeViewViewModel extends ChangeNotifier {
   final NavigationService _navigationService = locator<NavigationService>();
   final TextEditingController search = TextEditingController();
   final DialogService _dialogService = locator<DialogService>();
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final FlutterSecureStorage _secureStorage = locator<FlutterSecureStorage>();
   List<ShopData> shopsResponse = [
     ShopData(
         category: 'alimento',
@@ -70,8 +72,9 @@ class HomeViewViewModel extends ChangeNotifier {
   }
 
   void logOut() async {
-    await _googleSignIn.signOut();
+    await GoogleSignIn().signOut();
     await FirebaseAuth.instance.signOut();
+    await _secureStorage.delete(key: userToken);
     _navigationService.navigateToLoginView();
   }
 }
