@@ -27,7 +27,8 @@ class AuthService {
           idToken: googleAuth.idToken,
           accessToken: googleAuth.accessToken,
         );
-        UserCredential userCredential = await _firebaseAuth.signInWithCredential(credential);
+        UserCredential userCredential =
+            await _firebaseAuth.signInWithCredential(credential);
         String? deviceToken = await userCredential.user!.getIdToken(true);
         _secureStorage.write(key: userToken, value: deviceToken);
       }
@@ -49,8 +50,10 @@ class AuthService {
 
   Future<void> onLogIn(email, password) async {
     try {
-      final AuthCredential credential = EmailAuthProvider.credential(email: email, password: password);
-      UserCredential? userCredential = await _firebaseAuth.signInWithCredential(credential);
+      final AuthCredential credential =
+          EmailAuthProvider.credential(email: email, password: password);
+      UserCredential? userCredential =
+          await _firebaseAuth.signInWithCredential(credential);
       String? deviceToken = await userCredential.user!.getIdToken(true);
       _secureStorage.write(key: userToken, value: deviceToken);
     } catch (e) {

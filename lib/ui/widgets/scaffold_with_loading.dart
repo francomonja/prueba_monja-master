@@ -16,6 +16,7 @@ class ScaffoldWithLoading extends StatelessWidget {
     Key? key,
     this.showAppBar = false,
     this.showEndDrawer = false,
+    this.backgroundColor = AppColors.scaffoldBackgroundColor,
     required this.body,
     required this.isBusy,
   }) : super(key: key);
@@ -24,11 +25,12 @@ class ScaffoldWithLoading extends StatelessWidget {
   final bool showEndDrawer;
   final Widget body;
   final bool isBusy;
+  final Color? backgroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldBackgroundColor,
+      backgroundColor: backgroundColor,
       appBar: showAppBar
           ? AppBar(
               title: Text('appbar'),
